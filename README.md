@@ -5,6 +5,17 @@ A simple blockchain to help understand the basics of blockchain.
 - hashlib
 - datetime
 
+# Blockchain Parameters
+- Difficulty
+    It is a number that regulates how long it takes to add a new block to blockchain.
+    It ensures that blocks are added to blockchain at regular intervals.
+
+- Target Hash
+    The hash of a block should be less than or equal to this number in order to add to blockchain.
+
+- Nouce
+    It is used to calculate the hash of a block so that it satisfy target hash condition.
+
 # Output
 
     Hash: 73d1189c8c55b7ee404d16f8e88ed7191c8720a515e4df7d0c77467d80beff5b
