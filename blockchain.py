@@ -36,7 +36,7 @@ class Block:
     # its unique ID and helps make blockchain immutable,
     # ie if one block ID is changed , all the block IDs after 
     # that block will also change (pre_hash).
-    def hash(self):
+    def hashFun(self):
         # sha-256 alogrithm that generates unique 256 bit signature
         h = hashlib.sha256()
         
@@ -48,14 +48,12 @@ class Block:
             str(self.timestamp).encode('utf-8')+
             str(self.blockNum).encode('utf-8')
         ) 
-
         # returns a hex string
         return h.hexdigest()
 
     # print block data
     def __str__(self):
-        return "Block Hash: "+str(hash()) + "\nBlock No: "+str(self.blockNum)+ "\nData: "+ str(self.data) + "\nNouce: " + str(self.nouce)
-
+        return "\nHash: "+ str(self.hashFun()) + "\nBlock No: "+str(self.blockNum)+ "\nData: "+ str(self.data) + "\nNouce: " + str(self.nouce) + "\nPrevious Hash: " + str(self.pre_hash) + "\nTiemstamp: " + str(self.timestamp) +"\n-------------"
 
 # defining the blockchain data structrue
 # has block linked together similar to linked list. ohh yeah!
@@ -79,7 +77,7 @@ class Blockchain:
     def add(self, block):
         # set this blocks pre_hash to previous blocks hash,
         # which is stored in self.block
-        block.pre_hash = self.block.hash()
+        block.pre_hash = self.block.hashFun()
 
         # increment block number
         block.blockNum = self.block.blockNum + 1
@@ -93,13 +91,13 @@ class Blockchain:
         # from 0 to 2^32 
         for n in range(self.maxNouce):
             # check if the hash is less than our target value
-            if int(block.hash(),16) <= self.targetHash:
+            if int(block.hashFun(),16) <= self.targetHash:
                 # if yes, then add
                 self.add(block)
-                print(block)
+                # print(block)
                 break
             else:
-                block.nonce += 1
+                block.nouce += 1
 
 blockchain = Blockchain()
 
