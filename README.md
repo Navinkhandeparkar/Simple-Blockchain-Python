@@ -2,5 +2,5 @@
 A simple blockchain to help understand the basics of blockchain.
 
 # Dependencies
-hashlib
-datetime
+- hashlib
+- datetime
